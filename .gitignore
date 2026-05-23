@@ -1,0 +1,16 @@
+node_modules
+.env
+.cache
+build
+public/build
+.shopify
+.DS_Store
+
+# Puppeteer cached browsers
+.local-chromium
+
+# Compiled JS artifacts alongside TS sources
+app/**/*.js
+src/**/*.js
+vite.config.js
+vite.extension.config.js

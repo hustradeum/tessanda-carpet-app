@@ -1,0 +1,70 @@
+import type { FormEvent } from "react";
+
+interface Props {
+  handleFormSubmit: (e: FormEvent<HTMLButtonElement>) => void;
+  setFirstname: (v: string) => void;
+  setLastname: (v: string) => void;
+  setMail: (v: string) => void;
+  setPhone: (v: string) => void;
+  setMessage: (v: string) => void;
+}
+
+export default function Form({
+  handleFormSubmit,
+  setFirstname,
+  setLastname,
+  setMail,
+  setPhone,
+  setMessage,
+}: Props) {
+  function handleSubmit(e: FormEvent<HTMLButtonElement>) {
+    const btn = e.target as HTMLButtonElement;
+    if (btn.parentElement instanceof HTMLFormElement) {
+      const elForm = btn.parentElement;
+      if (elForm.checkValidity()) {
+        handleFormSubmit(e);
+      }
+    }
+  }
+
+  return (
+    <div className="send-carpet-form">
+      <div className="send-carpet-form__title">Offerte anfordern</div>
+      <div className="send-carpet-form__form">
+        <form>
+          <label htmlFor="firstname">
+            <span>Vorname</span>
+            <input type="text" id="firstname" name="firstname" required onChange={(e) => setFirstname(e.target.value)} />
+          </label>
+          <label htmlFor="lastname">
+            <span>Nachname</span>
+            <input type="text" id="lastname" name="lastname" required onChange={(e) => setLastname(e.target.value)} />
+          </label>
+          <label htmlFor="mail">
+            <span>Mail</span>
+            <input type="email" id="mail" name="mail" required onChange={(e) => setMail(e.target.value)} />
+          </label>
+          <label htmlFor="phone">
+            <span>Telefon</span>
+            <input type="tel" id="phone" name="phone" required onChange={(e) => setPhone(e.target.value)} />
+          </label>
+          <label htmlFor="message">
+            <span>
+              Nachricht <small>(optional)</small>
+            </span>
+            <textarea id="message" name="message" onChange={(e) => setMessage(e.target.value)} />
+          </label>
+          <p>
+            <small>
+              Ihrer Anfrage wird automatisch die Teppichkonfiguration als PDF beigefügt. Sie
+              erhalten zudem eine Kopie als Bestätigung an Ihre E-Mail-Adresse.
+            </small>
+          </p>
+          <button className="button send-carpet-mail-submit-button" type="submit" onClick={handleSubmit}>
+            Anfrage absenden
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}

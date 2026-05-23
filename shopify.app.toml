@@ -1,0 +1,23 @@
+name = "Tessanda Teppich Konfigurator"
+client_id = "6d96e3148cf3ab724c6e71eddbb97837"
+application_url = "https://REPLACE-WITH-YOUR-APP-URL.fly.dev"
+embedded = false
+
+[build]
+  automatically_update_urls_on_dev = true
+
+[access_scopes]
+  scopes = "write_themes"
+
+[auth]
+  redirect_urls = [
+    "https://REPLACE-WITH-YOUR-APP-URL.fly.dev/auth/callback"
+  ]
+
+[webhooks]
+  api_version = "2024-01"
+
+[[extensions]]
+  type = "theme"
+  name = "carpet-configurator"
+  handle = "carpet-configurator"

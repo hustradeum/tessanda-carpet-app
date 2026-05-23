@@ -1,0 +1,2 @@
+# This file prevents non-asset files from being uploaded
+*.map

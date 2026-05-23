@@ -1,0 +1,24 @@
+{{ 'carpet-configurator.css' | asset_url | stylesheet_tag }}
+
+<div
+  id="tessanda-carpet-configurator"
+  data-api-url="{{ block.settings.api_url }}"
+  style="font-family: sans-serif;"
+></div>
+
+<script src="{{ 'carpet-configurator.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Teppich Konfigurator",
+  "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "api_url",
+      "label": "App API URL",
+      "info": "URL der Tessanda Carpet App (z.B. https://tessanda-carpet-app.fly.dev). Im lokalen Entwicklungsmodus: die ngrok-URL aus 'shopify app dev'."
+    }
+  ]
+}
+{% endschema %}
