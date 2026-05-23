@@ -1,6 +1,6 @@
 name = "Tessanda Teppich Konfigurator"
 client_id = "6d96e3148cf3ab724c6e71eddbb97837"
-application_url = "https://REPLACE-WITH-YOUR-APP-URL.fly.dev"
+application_url = "https://tessanda.tradeumcloud.ch"
 embedded = false
 
 [build]
@@ -11,7 +11,7 @@ embedded = false
 
 [auth]
   redirect_urls = [
-    "https://REPLACE-WITH-YOUR-APP-URL.fly.dev/auth/callback"
+    "https://tessanda.tradeumcloud.ch/auth/callback"
   ]
 
 [webhooks]
