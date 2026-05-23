@@ -1,4 +1,4 @@
-FROM node:20-slim
+FROM node:20-bookworm-slim
 
 # Chromium + fonts for Puppeteer PDF generation
 RUN apt-get update && apt-get install -y \
@@ -14,14 +14,18 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+
+# Install all deps (including devDeps needed for build)
+RUN npm install --include=dev
 
 COPY . .
-RUN npm run build
+
+# Build Remix app
+RUN ./node_modules/.bin/remix vite:build
 
 ENV NODE_ENV=production
 ENV PORT=3000
 
 EXPOSE 3000
 
-CMD ["npm", "run", "start"]
+CMD ["./node_modules/.bin/remix-serve", "./build/server/index.js"]
