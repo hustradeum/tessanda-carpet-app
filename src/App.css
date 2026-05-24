@@ -23,6 +23,10 @@
 
 .carpet-preview {
   max-width: 65%;
+  flex: 1 1 0;
+  padding: 0 3rem;
+  box-sizing: border-box;
+  overflow: visible;
 }
 
 /* ── Buttons ─────────────────────────────────────── */
@@ -385,7 +389,9 @@
   .carpet-preview {
     max-width: 100%;
     width: 100%;
+    flex: 0 0 100%;
     overflow-x: auto;
+    padding: 0 3rem;
     order: 1;
   }
 
