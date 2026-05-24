@@ -119,20 +119,19 @@ export default function App() {
 
   return (
     <>
-      <div className="carpet-configurator">
-        <div className="carpet-preview">
-          <CarpetPreview
-            width={width}
-            height={height}
-            tileWidth={tileWidth}
-            tileHeight={tileHeight}
-            pattern={activePattern}
-            colors={colors}
-            handleRowSelection={handleRowSelection}
-          />
-        </div>
+      <div className="carpet-preview">
+        <CarpetPreview
+          width={width}
+          height={height}
+          tileWidth={tileWidth}
+          tileHeight={tileHeight}
+          pattern={activePattern}
+          colors={colors}
+          handleRowSelection={handleRowSelection}
+        />
+      </div>
 
-        <div className="carpet-controls">
+      <div className="carpet-controls">
         <PatternPicker activePattern={activePattern} handlePatternChange={handlePatternChange} />
         <SizePicker
           width={width}
@@ -159,7 +158,6 @@ export default function App() {
         >
           Alle Farben zurücksetzen
         </button>
-      </div>
       </div>
 
       <div className="carpet-save-options">

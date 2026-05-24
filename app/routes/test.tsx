@@ -74,7 +74,7 @@ export function loader({ request }: LoaderFunctionArgs) {
         <h1>Teppichkonfigurator</h1>
         <h5>Gestalten Sie Ihren Wunschteppich selbst</h5>
       </div>
-      <div id="tessanda-carpet-configurator" data-api-url="${apiUrl}"></div>
+      <div id="tessanda-carpet-configurator" class="carpet-configurator" data-api-url="${apiUrl}"></div>
     </div>
   </div>
   <script src="/assets/carpet-configurator.js" defer></script>
