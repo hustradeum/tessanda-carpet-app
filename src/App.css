@@ -19,14 +19,16 @@
 .carpet-controls {
   width: 30%;
   flex: 0 0 30%;
+  min-width: 200px;
 }
 
 .carpet-preview {
-  max-width: 65%;
   flex: 1 1 0;
+  min-width: 0;
   padding: 0 3rem;
   box-sizing: border-box;
-  overflow: visible;
+  overflow-x: auto;
+  overflow-y: visible;
 }
 
 /* ── Buttons ─────────────────────────────────────── */
@@ -83,7 +85,7 @@
 /* ── Carpet preview ──────────────────────────────── */
 .row {
   display: flex;
-  width: auto;
+  width: max-content;
   flex-wrap: nowrap;
   cursor: pointer;
   position: relative;
@@ -379,7 +381,7 @@
 }
 
 /* ── Responsive ──────────────────────────────────── */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 960px) {
   .carpet-controls {
     width: 100%;
     flex: 0 0 100%;
@@ -387,10 +389,10 @@
   }
 
   .carpet-preview {
-    max-width: 100%;
     width: 100%;
     flex: 0 0 100%;
     overflow-x: auto;
+    overflow-y: visible;
     padding: 0 3rem;
     order: 1;
   }
