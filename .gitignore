@@ -14,3 +14,4 @@ app/**/*.js
 src/**/*.js
 vite.config.js
 vite.extension.config.js
+extensions/carpet-configurator/assets/assets/
