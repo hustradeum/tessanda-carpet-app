@@ -2,7 +2,7 @@ import type { LoaderFunctionArgs } from "@remix-run/node";
 
 export function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
-  const apiUrl = `${url.protocol}//${url.host}`;
+  const apiUrl = process.env.SHOPIFY_APP_URL ?? `https://${url.host}`;
   const html = `<!DOCTYPE html>
 <html lang="de">
 <head>
