@@ -43,7 +43,10 @@ export async function sendQuoteEmails(
   const body = buildEmailBody(data);
   const fromName = "Tessanda Handweberei";
   const fromAddr = process.env.SMTP_USER ?? "shop@tessanda.ch";
-  const adminEmail = process.env.ADMIN_EMAIL ?? "allegra@tessanda.ch";
+  const adminEmails = [
+    process.env.ADMIN_EMAIL ?? "allegra@tessanda.ch",
+    ...(process.env.ADMIN_EMAIL_2 ? [process.env.ADMIN_EMAIL_2] : []),
+  ];
 
   const attachment = {
     filename: `tessanda-teppich-${new Date().toISOString().slice(0, 10)}.pdf`,
@@ -60,15 +63,17 @@ export async function sendQuoteEmails(
     attachments: [attachment],
   });
 
-  // Notification to admin with Reply-To pointing to customer
-  await transporter.sendMail({
-    from: `"${fromName}" <${fromAddr}>`,
-    to: adminEmail,
-    replyTo: `${data.firstname} ${data.lastname} <${data.mail}>`,
-    subject: "Neue Anfrage Teppichkonfigurator",
-    html: body,
-    attachments: [attachment],
-  });
+  // Notification to all admins with Reply-To pointing to customer
+  for (const adminEmail of adminEmails) {
+    await transporter.sendMail({
+      from: `"${fromName}" <${fromAddr}>`,
+      to: adminEmail,
+      replyTo: `${data.firstname} ${data.lastname} <${data.mail}>`,
+      subject: "Neue Anfrage Teppichkonfigurator",
+      html: body,
+      attachments: [attachment],
+    });
+  }
 }
 
 export async function testSmtpConnection(): Promise<boolean> {
