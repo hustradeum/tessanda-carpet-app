@@ -40,7 +40,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   pendingNonces.add(nonce);
   setTimeout(() => pendingNonces.delete(nonce), 10 * 60 * 1000);
 
-  const appUrl = process.env.SHOPIFY_APP_URL ?? `${url.protocol}//${url.host}`;
+  const appUrl = process.env.SHOPIFY_APP_URL ?? `https://${url.host}`;
   const redirectUri = `${appUrl}/auth/callback`;
   const scopes = "write_themes";
   const apiKey = process.env.SHOPIFY_API_KEY ?? "";
