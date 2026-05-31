@@ -294,7 +294,10 @@
 }
 
 #tessanda-carpet-configurator .pattern-picker__patterns label span {
-  padding-left: 1.5em;
+  padding-left: 22px;
+  position: relative;
+  display: inline-block;
+  line-height: 1.4;
 }
 
 #tessanda-carpet-configurator .pattern-picker__patterns label span::before {
@@ -302,11 +305,11 @@
   position: absolute;
   left: 0;
   top: 50%;
-  width: 0.8em;
-  height: 0.8em;
+  width: 15px;
+  height: 15px;
   border-radius: 2px;
   background: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #bbb;
   transform: translateY(-50%);
   z-index: 4;
 }
@@ -315,9 +318,11 @@
   content: "✔";
   color: #6a231e;
   position: absolute;
-  left: 0.15em;
-  top: 0.15em;
-  font-size: 0.6em;
+  left: 2px;
+  top: 50%;
+  transform: translateY(-55%);
+  font-size: 11px;
+  line-height: 1;
   z-index: 5;
 }
 
