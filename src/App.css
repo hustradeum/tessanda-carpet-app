@@ -1,13 +1,13 @@
 /*
   Tessanda Teppich Konfigurator — Styles
-  CSS values taken 1:1 from WP build/css/bundle.e0f0b12738aa.css.
-  All selectors prefixed with #tessanda-carpet-configurator (ID specificity)
-  to prevent Shopify theme overrides (Dawn and others define .tile, .row, etc.)
-  Extra rules at the bottom cover form inputs not styled by the WP theme globally.
+  All size values in px (NOT rem/em) so Shopify theme font-size overrides
+  (e.g. html { font-size: 62.5% } = 10px) cannot shrink the configurator.
+  Colors and structure taken 1:1 from WP build/css/bundle.e0f0b12738aa.css.
+  All selectors scoped under #tessanda-carpet-configurator (ID specificity 100)
+  to override any Shopify theme class selectors (specificity 10).
 */
 
 /* ── Shopify theme CSS reset ─────────────────────── */
-/* Undo Shopify theme styles without destroying browser defaults */
 #tessanda-carpet-configurator *,
 #tessanda-carpet-configurator *::before,
 #tessanda-carpet-configurator *::after {
@@ -22,7 +22,7 @@
   display: inline-block;
 }
 
-/* Inputs/textareas: only reset appearance, keep border/padding from browser + our rules */
+/* Inputs/textareas: only reset appearance */
 #tessanda-carpet-configurator input,
 #tessanda-carpet-configurator textarea {
   -webkit-appearance: none;
@@ -32,21 +32,21 @@
   font-family: inherit;
 }
 
-/* SVG: prevent theme from hiding or clipping them */
+/* SVG: prevent theme from hiding or clipping */
 #tessanda-carpet-configurator svg {
   overflow: visible;
 }
 
 /* ── Intro text (outside React app, in Liquid) ───── */
 .carpet-configurator__intro-text {
-  margin-bottom: 2rem;
-  font-size: 0.8rem;
+  margin-bottom: 32px;
+  font-size: 13px;
   line-height: 1.6;
   color: #555;
 }
 
 .carpet-configurator__intro-text p {
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 12px 0;
 }
 
 /* ── Layout ─────────────────────────────────────── */
@@ -55,10 +55,11 @@
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
+  font-size: 16px;
 }
 
 #tessanda-carpet-configurator .carpet-configurator__intro {
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
 }
 
 #tessanda-carpet-configurator .carpet-controls {
@@ -69,7 +70,31 @@
 #tessanda-carpet-configurator .carpet-preview {
   max-width: 65%;
   overflow-x: auto;
-  padding: 0.3rem 2.5rem 0 2.5rem;
+  padding: 5px 40px 0 40px;
+}
+
+/* ── Login hint ──────────────────────────────────── */
+#tessanda-carpet-configurator .login-hint {
+  width: 100%;
+  flex: 0 0 100%;
+  padding: 16px;
+  margin-bottom: 32px;
+  background: #bb635d;
+  color: #fff;
+  font-size: 13px;
+}
+
+#tessanda-carpet-configurator .login-hint a:link,
+#tessanda-carpet-configurator .login-hint a:visited {
+  color: #fff;
+  transition: all 150ms ease-out;
+  border-bottom: 3px solid #fff;
+}
+
+#tessanda-carpet-configurator .login-hint a:hover,
+#tessanda-carpet-configurator .login-hint a:active {
+  color: rgba(187, 99, 93, 0.5);
+  border-bottom-color: rgba(187, 99, 93, 0.5);
 }
 
 /* ── Buttons ─────────────────────────────────────── */
@@ -82,12 +107,12 @@
   background: #fff;
   color: #bb635d;
   display: inline-block;
-  font-size: 0.8rem;
-  padding: 0.6rem 0.8rem;
-  margin-bottom: 1rem;
+  font-size: 13px;
+  padding: 10px 13px;
+  margin-bottom: 16px;
   border: 5px solid #bb635d;
   line-height: 1;
-  transition: all 0.15s ease-out;
+  transition: all 150ms ease-out;
 }
 
 @media only screen and (max-width: 700px) {
@@ -113,40 +138,16 @@
   background: #bb635d;
 }
 
-/* ── Login hint ──────────────────────────────────── */
-#tessanda-carpet-configurator .login-hint {
-  width: 100%;
-  flex: 0 0 100%;
-  padding: 1rem;
-  margin-bottom: 2rem;
-  background: #bb635d;
-  color: #fff;
-  font-size: 0.8rem;
-}
-
-#tessanda-carpet-configurator .login-hint a:link,
-#tessanda-carpet-configurator .login-hint a:visited {
-  color: #fff;
-  transition: all 0.15s ease-out;
-  border-bottom: 3px solid #fff;
-}
-
-#tessanda-carpet-configurator .login-hint a:hover,
-#tessanda-carpet-configurator .login-hint a:active {
-  color: rgba(187, 99, 93, 0.5);
-  border-bottom-color: rgba(187, 99, 93, 0.5);
-}
-
 /* ── Save options ────────────────────────────────── */
 #tessanda-carpet-configurator .carpet-save-options {
   width: 100%;
   flex: 0 0 100%;
-  margin-top: 2rem;
+  margin-top: 32px;
 }
 
 #tessanda-carpet-configurator .carpet-save-options .carpetconfigurator-button {
   width: auto;
-  margin-right: 1rem;
+  margin-right: 16px;
 }
 
 /* ── Carpet preview ──────────────────────────────── */
@@ -164,14 +165,14 @@
   opacity: 1;
   margin: 0;
   padding: 0;
-  transition: opacity 0.15s ease-out;
+  transition: opacity 150ms ease-out;
 }
 
 #tessanda-carpet-configurator .row-number {
   position: absolute;
-  top: 0.15rem;
+  top: 2px;
   right: 102%;
-  font-size: 0.7rem;
+  font-size: 11px;
   text-align: right;
   color: #969696;
 }
@@ -199,33 +200,33 @@
   content: "";
   position: absolute;
   z-index: 2;
-  top: -0.15rem;
+  top: -2px;
   width: 0;
   height: 0;
-  border-top: 0.5rem solid transparent;
-  border-bottom: 0.5rem solid transparent;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
 }
 
 #tessanda-carpet-configurator .row.is-active::before,
 #tessanda-carpet-configurator .row.is-active:hover::before {
-  left: -0.8rem;
+  left: -13px;
   right: auto;
   bottom: auto;
   background: none;
-  border-left: 0.75rem solid #bb635d;
+  border-left: 12px solid #bb635d;
 }
 
 #tessanda-carpet-configurator .row.is-active::after {
-  right: -0.8rem;
-  border-right: 0.75rem solid #bb635d;
+  right: -13px;
+  border-right: 12px solid #bb635d;
 }
 
 #tessanda-carpet-configurator .tile {
   display: inline-block;
   position: relative;
-  width: 1.2rem;
-  flex: 0 1 1.2rem;
-  height: 0.6rem;
+  width: 19px;
+  flex: 0 1 19px;
+  height: 10px;
 }
 
 #tessanda-carpet-configurator .tile svg {
@@ -239,26 +240,26 @@
 /* ── Color picker ────────────────────────────────── */
 #tessanda-carpet-configurator .color-picker {
   background: #f2f2f2;
-  margin: 1rem 0;
+  margin: 16px 0;
 }
 
 #tessanda-carpet-configurator .color-picker__title {
   background: #e4e4e4;
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
+  padding: 8px 16px;
+  font-size: 13px;
 }
 
 #tessanda-carpet-configurator .color-picker__colors {
-  padding: 1rem;
+  padding: 16px;
 }
 
 #tessanda-carpet-configurator .color-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 1.2rem;
-  height: 1.2rem;
-  margin: 0.1rem;
+  width: 19px;
+  height: 19px;
+  margin: 2px;
   border: 5px solid transparent;
   cursor: pointer;
 }
@@ -270,25 +271,25 @@
 /* ── Pattern picker ──────────────────────────────── */
 #tessanda-carpet-configurator .pattern-picker {
   background: #f2f2f2;
-  margin: 0 0 1rem;
+  margin: 0 0 16px;
 }
 
 #tessanda-carpet-configurator .pattern-picker__title {
   background: #e4e4e4;
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
+  padding: 8px 16px;
+  font-size: 13px;
 }
 
 #tessanda-carpet-configurator .pattern-picker__patterns {
-  padding: 0.5rem 1rem;
+  padding: 8px 16px;
 }
 
 #tessanda-carpet-configurator .pattern-picker__patterns label {
   display: block;
   position: relative;
   cursor: pointer;
-  font-size: 0.8rem;
-  margin: 0.5rem 0;
+  font-size: 13px;
+  margin: 8px 0;
 }
 
 #tessanda-carpet-configurator .pattern-picker__patterns label input {
@@ -296,7 +297,7 @@
 }
 
 #tessanda-carpet-configurator .pattern-picker__patterns label span {
-  padding-left: 1.5rem;
+  padding-left: 24px;
 }
 
 #tessanda-carpet-configurator .pattern-picker__patterns label span::before {
@@ -304,8 +305,8 @@
   position: absolute;
   left: 0;
   top: 50%;
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 13px;
+  height: 13px;
   border-radius: 2px;
   background: #fff;
   transform: translateY(-50%);
@@ -316,52 +317,52 @@
   content: "✔";
   color: #6a231e;
   position: absolute;
-  left: 0.15rem;
-  top: 0.15rem;
-  font-size: 0.6rem;
+  left: 2px;
+  top: 2px;
+  font-size: 10px;
   z-index: 5;
 }
 
 /* ── Size picker ─────────────────────────────────── */
 #tessanda-carpet-configurator .size-picker {
   background: #f2f2f2;
-  margin: 0 0 1rem;
+  margin: 0 0 16px;
 }
 
 #tessanda-carpet-configurator .size-picker__title {
   background: #e4e4e4;
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
+  padding: 8px 16px;
+  font-size: 13px;
 }
 
 #tessanda-carpet-configurator .size-picker__sizes {
-  padding: 0.5rem 1rem;
+  padding: 8px 16px;
 }
 
 #tessanda-carpet-configurator .size-picker__sizes label {
   display: block;
   position: relative;
-  font-size: 0.8rem;
-  margin: 0.5rem 0;
+  font-size: 13px;
+  margin: 8px 0;
 }
 
 #tessanda-carpet-configurator .size-picker__sizes input {
-  font-size: 0.8rem;
-  padding: 0.3rem;
+  font-size: 13px;
+  padding: 5px;
   border: 1px solid #c0c0c0;
   background: #fff;
   color: #333;
-  width: 4rem;
+  width: 64px;
 }
 
 #tessanda-carpet-configurator .size-input-label {
   display: inline-block;
-  width: 3rem;
+  width: 48px;
 }
 
 #tessanda-carpet-configurator .size-input-unit {
   display: inline-block;
-  margin-left: 0.25rem;
+  margin-left: 4px;
 }
 
 /* ── Offerte form ────────────────────────────────── */
@@ -369,19 +370,19 @@
   width: 100%;
   flex: 0 0 100%;
   background: #f2f2f2;
-  margin-top: 2rem;
-  font-size: 0.8rem;
+  margin-top: 32px;
+  font-size: 13px;
 }
 
 #tessanda-carpet-configurator .send-carpet-form label {
   display: block;
-  margin-top: 1rem;
+  margin-top: 16px;
 }
 
 #tessanda-carpet-configurator .send-carpet-form label span {
-  font-size: 0.7rem;
+  font-size: 11px;
   line-height: 1;
-  margin-bottom: 0.3rem;
+  margin-bottom: 5px;
 }
 
 #tessanda-carpet-configurator .send-carpet-form.success {
@@ -402,24 +403,25 @@
 
 #tessanda-carpet-configurator .send-carpet-form__title {
   background: #e4e4e4;
-  padding: 0.5rem 1rem;
+  padding: 8px 16px;
 }
 
 #tessanda-carpet-configurator .send-carpet-form__form {
   max-width: 600px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 16px 32px;
 }
 
-/* Form inputs — not in WP bundle (covered by WP theme globally), needed explicitly in Shopify */
 #tessanda-carpet-configurator .send-carpet-form__form input,
 #tessanda-carpet-configurator .send-carpet-form__form textarea {
   width: 100%;
-  padding: 0.4rem;
-  font-size: 0.8rem;
+  padding: 6px;
+  font-size: 13px;
   border: 1px solid #c0c0c0;
   box-sizing: border-box;
-  margin-top: 0.3rem;
+  margin-top: 5px;
+  background: #fff;
+  color: #333;
 }
 
 #tessanda-carpet-configurator .send-carpet-form__form textarea {
@@ -432,12 +434,12 @@
   color: #bb635d;
   background: #fff;
   display: inline-block;
-  font-size: 0.8rem;
-  padding: 0.6rem 0.8rem;
-  margin: 1rem 0 2rem;
+  font-size: 13px;
+  padding: 10px 13px;
+  margin: 16px 0 32px;
   border: 5px solid #bb635d;
   line-height: 1;
-  transition: all 0.15s ease-out;
+  transition: all 150ms ease-out;
 }
 
 @media only screen and (max-width: 700px) {
@@ -452,7 +454,7 @@
   background: #bb635d;
 }
 
-/* ── Responsive — not in WP bundle (WP theme handles globally), needed for Shopify ── */
+/* ── Responsive ──────────────────────────────────── */
 @media only screen and (max-width: 768px) {
   #tessanda-carpet-configurator .carpet-controls {
     width: 100%;
@@ -464,8 +466,8 @@
     max-width: 100%;
     width: 100%;
     overflow-x: auto;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 40px;
+    padding-right: 40px;
     order: 1;
   }
 
