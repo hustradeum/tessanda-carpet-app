@@ -1,0 +1,7 @@
+api_version = "2026-07"
+
+[[extensions]]
+uid = "0a26dc74-eb25-bb11-0ce3-32f25ae9721c51b98dba"
+type = "theme"
+name = "carpet-configurator"
+handle = "carpet-configurator"
