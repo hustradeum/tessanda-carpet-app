@@ -294,22 +294,20 @@
 }
 
 #tessanda-carpet-configurator .pattern-picker__patterns label span {
-  padding-left: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   position: relative;
-  display: inline-block;
-  line-height: 1.4;
 }
 
 #tessanda-carpet-configurator .pattern-picker__patterns label span::before {
   content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
+  display: block;
+  flex-shrink: 0;
   width: 18px;
   height: 18px;
   border-radius: 2px;
   background: #fff;
-  transform: translateY(-50%);
   z-index: 4;
 }
 
