@@ -149,6 +149,9 @@ export default function App() {
 
   return (
     <>
+      <div className="login-hint">
+        Melden Sie sich an, um Ihren Teppich in Ihrem Kundenkonto zu speichern und zu einem späteren Zeitpunkt zu bearbeiten.
+      </div>
       <div className="carpet-preview">
         <CarpetPreview
           width={width}

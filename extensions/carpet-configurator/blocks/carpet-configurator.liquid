@@ -1,5 +1,14 @@
 {{ 'carpet-configurator.css' | asset_url | stylesheet_tag }}
 
+{% if block.settings.show_intro %}
+<div class="carpet-configurator__intro-text">
+  <p>Als Erstes sollten Sie sich ein Kundenkonto anlegen oder sich in ein bestehendes einloggen, damit Sie Ihre Designs abspeichern können. Nur so können Sie Ihr Design später wieder ansehen. Ihr Design kann direkt per Mausklick an die Tessanda geschickt werden. Sie erhalten zeitnah ein massgeschneidertes Angebot.</p>
+  <p>Danach: Wählen Sie das Muster (Halbraute oder Zickzack). Die Grösse des Teppichs sollten Sie anhand der Pfeile eingeben – die Grössenschritte sind auf das Webmuster abgestimmt.</p>
+  <p>Nun können Sie anhand des Cursors die erste Zeile anwählen und jeweils zwei Farben definieren. Jede Zeile hat zwei Bereiche: die Dreicksreihe unten und diejenige oben. Zeile um Zeile entsteht die Farbgebung. Sie werden sehen, es gibt fast unzählige Möglichkeiten, den Teppich zu gestalten.</p>
+  <p>Viel Vergnügen beim kreativen Gestalten!</p>
+</div>
+{% endif %}
+
 <div
   id="tessanda-carpet-configurator"
   class="carpet-configurator"
@@ -17,7 +26,13 @@
       "type": "text",
       "id": "api_url",
       "label": "App API URL",
-      "info": "URL der Tessanda Carpet App (z.B. https://tessanda-carpet-app.fly.dev). Im lokalen Entwicklungsmodus: die ngrok-URL aus 'shopify app dev'."
+      "info": "URL der Tessanda Carpet App, z.B. https://tessanda.tradeumcloud.ch"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_intro",
+      "label": "Einleitungstext anzeigen",
+      "default": true
     }
   ]
 }
