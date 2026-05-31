@@ -10,4 +10,6 @@ jobs:
     steps:
       - name: Trigger Coolify deployment
         run: |
-          curl -fsSL "${{ secrets.COOLIFY_DEPLOY_WEBHOOK }}"
+          curl -fsSL \
+            -H "Authorization: Bearer ${{ secrets.COOLIFY_API_TOKEN }}" \
+            "https://app.coolify.io/api/v1/deploy?uuid=txyl6x5ek5ulpdvlc1abe3m5"
