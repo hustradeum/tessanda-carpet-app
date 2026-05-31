@@ -1,27 +1,27 @@
 /*
   Tessanda Teppich Konfigurator — Styles
-  Converted from Stylus source (carpetconfigurator/*.styl)
-  Variables: Red=#BB635D, DarkRed=#6A231E, Grey=rgb(120,120,120)
+  All child selectors scoped under #tessanda-carpet-configurator
+  to prevent conflicts with Shopify theme CSS (e.g. Dawn .tile, .row overrides).
 */
 
-/* ── Layout ─────────────────────────────────────── */
-.carpet-configurator__intro {
-  margin-bottom: 2rem;
-}
-
-.carpet-configurator {
+/* ── Root layout ─────────────────────────────────── */
+#tessanda-carpet-configurator {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
 }
 
-.carpet-controls {
+#tessanda-carpet-configurator .carpet-configurator__intro {
+  margin-bottom: 2rem;
+}
+
+#tessanda-carpet-configurator .carpet-controls {
   width: 30%;
   flex: 0 0 30%;
 }
 
-.carpet-preview {
+#tessanda-carpet-configurator .carpet-preview {
   flex: 0 0 65%;
   max-width: 65%;
   min-width: 0;
@@ -29,7 +29,7 @@
 }
 
 /* ── Buttons ─────────────────────────────────────── */
-.carpetconfigurator-button {
+#tessanda-carpet-configurator .carpetconfigurator-button {
   cursor: pointer;
   width: 100%;
   appearance: none;
@@ -45,42 +45,42 @@
 }
 
 @media only screen and (max-width: 700px) {
-  .carpetconfigurator-button {
+  #tessanda-carpet-configurator .carpetconfigurator-button {
     border-width: 3px;
   }
 }
 
-.carpetconfigurator-button[disabled] {
+#tessanda-carpet-configurator .carpetconfigurator-button[disabled] {
   cursor: default;
   color: #c0c0c0;
   border-color: #c0c0c0;
 }
 
-.carpetconfigurator-button[disabled]:hover {
+#tessanda-carpet-configurator .carpetconfigurator-button[disabled]:hover {
   color: rgb(120, 120, 120);
   background: #ffffff;
 }
 
-.carpetconfigurator-button:hover,
-.carpetconfigurator-button:active {
+#tessanda-carpet-configurator .carpetconfigurator-button:hover,
+#tessanda-carpet-configurator .carpetconfigurator-button:active {
   color: #ffffff;
   background: #bb635d;
 }
 
 /* ── Save options ────────────────────────────────── */
-.carpet-save-options {
+#tessanda-carpet-configurator .carpet-save-options {
   width: 100%;
   flex: 0 0 100%;
   margin-top: 2rem;
 }
 
-.carpet-save-options .carpetconfigurator-button {
+#tessanda-carpet-configurator .carpet-save-options .carpetconfigurator-button {
   width: auto;
   margin-right: 1rem;
 }
 
 /* ── Carpet preview ──────────────────────────────── */
-.row {
+#tessanda-carpet-configurator .row {
   display: flex;
   width: auto;
   flex-wrap: nowrap;
@@ -95,7 +95,7 @@
   transition: opacity 150ms ease-out;
 }
 
-.tile {
+#tessanda-carpet-configurator .tile {
   display: inline-block;
   position: relative;
   width: 1.2rem;
@@ -103,7 +103,7 @@
   height: 0.6rem;
 }
 
-.tile svg {
+#tessanda-carpet-configurator .tile svg {
   position: absolute;
   top: 0;
   left: 0;
@@ -111,7 +111,7 @@
   height: 100%;
 }
 
-.row-number {
+#tessanda-carpet-configurator .row-number {
   position: absolute;
   top: 0.15rem;
   right: calc(100% + 2rem);
@@ -120,13 +120,13 @@
   color: rgb(150, 150, 150);
 }
 
-.row-number-right {
+#tessanda-carpet-configurator .row-number-right {
   right: auto;
   left: calc(100% + 2rem);
   text-align: left;
 }
 
-.row:hover::before {
+#tessanda-carpet-configurator .row:hover::before {
   content: '';
   position: absolute;
   z-index: 1;
@@ -137,8 +137,8 @@
   background: rgba(187, 99, 93, 0.5);
 }
 
-.row.is-active::before,
-.row.is-active:hover::before {
+#tessanda-carpet-configurator .row.is-active::before,
+#tessanda-carpet-configurator .row.is-active:hover::before {
   content: '';
   position: absolute;
   z-index: 2;
@@ -154,7 +154,7 @@
   border-bottom: 0.5rem solid transparent;
 }
 
-.row.is-active::after {
+#tessanda-carpet-configurator .row.is-active::after {
   content: '';
   position: absolute;
   z-index: 2;
@@ -168,22 +168,22 @@
 }
 
 /* ── Color picker ────────────────────────────────── */
-.color-picker {
+#tessanda-carpet-configurator .color-picker {
   background: #f5f5f5;
   margin: 1rem 0;
 }
 
-.color-picker__title {
+#tessanda-carpet-configurator .color-picker__title {
   background: #e8e8e8;
   padding: 0.5rem 1rem;
   font-size: 0.8rem;
 }
 
-.color-picker__colors {
+#tessanda-carpet-configurator .color-picker__colors {
   padding: 1rem;
 }
 
-.color-button {
+#tessanda-carpet-configurator .color-button {
   appearance: none;
   width: 1.2rem;
   height: 1.2rem;
@@ -192,27 +192,27 @@
   cursor: pointer;
 }
 
-.color-button.is-active-color {
+#tessanda-carpet-configurator .color-button.is-active-color {
   border-color: #bb635d;
 }
 
 /* ── Pattern picker ──────────────────────────────── */
-.pattern-picker {
+#tessanda-carpet-configurator .pattern-picker {
   background: #f5f5f5;
   margin: 0 0 1rem;
 }
 
-.pattern-picker__title {
+#tessanda-carpet-configurator .pattern-picker__title {
   background: #e8e8e8;
   padding: 0.5rem 1rem;
   font-size: 0.8rem;
 }
 
-.pattern-picker__patterns {
+#tessanda-carpet-configurator .pattern-picker__patterns {
   padding: 0.5rem 1rem;
 }
 
-.pattern-picker__patterns label {
+#tessanda-carpet-configurator .pattern-picker__patterns label {
   display: block;
   position: relative;
   cursor: pointer;
@@ -220,15 +220,15 @@
   margin: 0.5rem 0;
 }
 
-.pattern-picker__patterns input[type="radio"] {
+#tessanda-carpet-configurator .pattern-picker__patterns input[type="radio"] {
   display: none;
 }
 
-.pattern-picker__patterns span {
+#tessanda-carpet-configurator .pattern-picker__patterns span {
   padding-left: 1.5rem;
 }
 
-.pattern-picker__patterns span::before {
+#tessanda-carpet-configurator .pattern-picker__patterns span::before {
   content: '';
   position: absolute;
   left: 0;
@@ -241,7 +241,7 @@
   z-index: 4;
 }
 
-.pattern-picker__patterns input:checked + span::after {
+#tessanda-carpet-configurator .pattern-picker__patterns input:checked + span::after {
   content: "✔";
   color: #6a231e;
   position: absolute;
@@ -252,45 +252,45 @@
 }
 
 /* ── Size picker ─────────────────────────────────── */
-.size-picker {
+#tessanda-carpet-configurator .size-picker {
   background: #f5f5f5;
   margin: 0 0 1rem;
 }
 
-.size-picker__title {
+#tessanda-carpet-configurator .size-picker__title {
   background: #e8e8e8;
   padding: 0.5rem 1rem;
   font-size: 0.8rem;
 }
 
-.size-picker__sizes {
+#tessanda-carpet-configurator .size-picker__sizes {
   padding: 0.5rem 1rem;
 }
 
-.size-picker__sizes label {
+#tessanda-carpet-configurator .size-picker__sizes label {
   display: block;
   position: relative;
   font-size: 0.8rem;
   margin: 0.5rem 0;
 }
 
-.size-picker__sizes input {
+#tessanda-carpet-configurator .size-picker__sizes input {
   font-size: 0.8rem;
   padding: 0.3rem;
 }
 
-.size-input-label {
+#tessanda-carpet-configurator .size-input-label {
   display: inline-block;
   width: 3rem;
 }
 
-.size-input-unit {
+#tessanda-carpet-configurator .size-input-unit {
   display: inline-block;
   margin-left: 0.25rem;
 }
 
 /* ── Offerte form ────────────────────────────────── */
-.send-carpet-form {
+#tessanda-carpet-configurator .send-carpet-form {
   width: 100%;
   flex: 0 0 100%;
   background: #f5f5f5;
@@ -298,47 +298,47 @@
   font-size: 0.8rem;
 }
 
-.send-carpet-form label {
+#tessanda-carpet-configurator .send-carpet-form label {
   display: block;
   margin-top: 1rem;
 }
 
-.send-carpet-form label span {
+#tessanda-carpet-configurator .send-carpet-form label span {
   font-size: 0.7rem;
   line-height: 1;
   margin-bottom: 0.3rem;
   display: block;
 }
 
-.send-carpet-form.success {
+#tessanda-carpet-configurator .send-carpet-form.success {
   background-color: #52d681;
 }
 
-.send-carpet-form.success .send-carpet-form__form {
+#tessanda-carpet-configurator .send-carpet-form.success .send-carpet-form__form {
   color: #ffffff;
 }
 
-.send-carpet-form.error {
+#tessanda-carpet-configurator .send-carpet-form.error {
   background-color: #ed6663;
 }
 
-.send-carpet-form.error .send-carpet-form__form {
+#tessanda-carpet-configurator .send-carpet-form.error .send-carpet-form__form {
   color: #ffffff;
 }
 
-.send-carpet-form__title {
+#tessanda-carpet-configurator .send-carpet-form__title {
   background: #e8e8e8;
   padding: 0.5rem 1rem;
 }
 
-.send-carpet-form__form {
+#tessanda-carpet-configurator .send-carpet-form__form {
   max-width: 600px;
   margin: 0 auto;
   padding: 1rem 2rem;
 }
 
-.send-carpet-form__form input,
-.send-carpet-form__form textarea {
+#tessanda-carpet-configurator .send-carpet-form__form input,
+#tessanda-carpet-configurator .send-carpet-form__form textarea {
   width: 100%;
   padding: 0.4rem;
   font-size: 0.8rem;
@@ -347,12 +347,12 @@
   margin-top: 0.3rem;
 }
 
-.send-carpet-form__form textarea {
+#tessanda-carpet-configurator .send-carpet-form__form textarea {
   min-height: 80px;
   resize: vertical;
 }
 
-.send-carpet-mail-submit-button {
+#tessanda-carpet-configurator .send-carpet-mail-submit-button {
   cursor: pointer;
   color: #bb635d;
   background: #ffffff;
@@ -366,33 +366,33 @@
 }
 
 @media only screen and (max-width: 700px) {
-  .send-carpet-mail-submit-button {
+  #tessanda-carpet-configurator .send-carpet-mail-submit-button {
     border-width: 3px;
   }
 }
 
-.send-carpet-mail-submit-button:hover,
-.send-carpet-mail-submit-button:active {
+#tessanda-carpet-configurator .send-carpet-mail-submit-button:hover,
+#tessanda-carpet-configurator .send-carpet-mail-submit-button:active {
   color: #ffffff;
   background: #bb635d;
 }
 
 /* ── Responsive ──────────────────────────────────── */
 @media only screen and (max-width: 768px) {
-  .carpet-controls {
+  #tessanda-carpet-configurator .carpet-controls {
     width: 100%;
     flex: 0 0 100%;
     order: 2;
   }
 
-  .carpet-preview {
+  #tessanda-carpet-configurator .carpet-preview {
     flex: 0 0 100%;
     max-width: 100%;
     overflow-x: auto;
     order: 1;
   }
 
-  .carpet-save-options .carpetconfigurator-button {
+  #tessanda-carpet-configurator .carpet-save-options .carpetconfigurator-button {
     width: 100%;
     margin-right: 0;
   }
