@@ -27,6 +27,7 @@
   max-width: 65%;
   overflow-x: auto;
   padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 /* ── Buttons ─────────────────────────────────────── */
@@ -394,6 +395,7 @@
     width: 100%;
     overflow-x: auto;
     padding-left: 2.5rem;
+    padding-right: 2.5rem;
     order: 1;
   }
 
