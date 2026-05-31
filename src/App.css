@@ -62,7 +62,6 @@
 
 #tessanda-carpet-configurator .carpet-preview {
   max-width: 65%;
-  overflow-x: auto;
   padding: 0.15em 2.5em 0 2.5em;
 }
 
@@ -458,7 +457,6 @@
   #tessanda-carpet-configurator .carpet-preview {
     max-width: 100%;
     width: 100%;
-    overflow-x: auto;
     padding-left: 2.5em;
     padding-right: 2.5em;
     order: 1;
