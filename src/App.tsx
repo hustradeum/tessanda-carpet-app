@@ -92,21 +92,27 @@ export default function App() {
   const onResetButtonClick = () => setColors({});
 
   const onDownloadAsPDF = async () => {
-    const response = await fetch(getApiUrl("/api/generate-pdf"), {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ width, height, pattern: activePattern, colors }),
-    });
-    const result = await response.json() as { success: boolean; pdf?: string; filename?: string };
-    if (result.success && result.pdf) {
-      const bytes = Uint8Array.from(atob(result.pdf), (c) => c.charCodeAt(0));
-      const blob = new Blob([bytes], { type: "application/pdf" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = result.filename ?? "tessanda-teppich.pdf";
-      a.click();
-      URL.revokeObjectURL(url);
+    try {
+      const response = await fetch(getApiUrl("/api/generate-pdf"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ width, height, pattern: activePattern, colors }),
+      });
+      const result = await response.json() as { success: boolean; pdf?: string; filename?: string };
+      if (result.success && result.pdf) {
+        const bytes = Uint8Array.from(atob(result.pdf), (c) => c.charCodeAt(0));
+        const blob = new Blob([bytes], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = result.filename ?? "tessanda-teppich.pdf";
+        a.click();
+        URL.revokeObjectURL(url);
+      } else {
+        alert("PDF konnte nicht erstellt werden. Bitte versuchen Sie es später erneut.");
+      }
+    } catch {
+      alert("PDF konnte nicht erstellt werden. Bitte versuchen Sie es später erneut.");
     }
   };
 

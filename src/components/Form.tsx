@@ -31,7 +31,7 @@ export default function Form({
     <div className="send-carpet-form">
       <div className="send-carpet-form__title">Offerte anfordern</div>
       <div className="send-carpet-form__form">
-        <form>
+        <form onSubmit={(e) => { e.preventDefault(); e.stopPropagation(); }}>
           <label htmlFor="firstname">
             <span>Vorname</span>
             <input type="text" id="firstname" name="firstname" required onChange={(e) => setFirstname(e.target.value)} />
