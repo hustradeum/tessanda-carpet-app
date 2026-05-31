@@ -5,7 +5,10 @@ import { testSmtpConnection } from "../lib/email.server.js";
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const baseUrl = `${url.protocol}//${url.host}`;
-  const smtpOk = await testSmtpConnection().catch(() => false);
+  const smtpOk = await Promise.race([
+    testSmtpConnection().catch(() => false),
+    new Promise<boolean>((resolve) => setTimeout(() => resolve(false), 5000)),
+  ]);
   return json({ baseUrl, smtpOk });
 }
 
