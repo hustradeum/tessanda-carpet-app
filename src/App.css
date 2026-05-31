@@ -1,10 +1,12 @@
 /*
   Tessanda Teppich Konfigurator — Styles
-  All child selectors scoped under #tessanda-carpet-configurator
-  to prevent conflicts with Shopify theme CSS (e.g. Dawn .tile, .row overrides).
+  CSS values taken 1:1 from WP build/css/bundle.e0f0b12738aa.css.
+  All selectors prefixed with #tessanda-carpet-configurator (ID specificity)
+  to prevent Shopify theme overrides (Dawn and others define .tile, .row, etc.)
+  Extra rules at the bottom cover form inputs not styled by the WP theme globally.
 */
 
-/* ── Root layout ─────────────────────────────────── */
+/* ── Layout ─────────────────────────────────────── */
 #tessanda-carpet-configurator {
   display: flex;
   justify-content: space-between;
@@ -22,9 +24,7 @@
 }
 
 #tessanda-carpet-configurator .carpet-preview {
-  flex: 0 0 65%;
   max-width: 65%;
-  min-width: 0;
   overflow-x: auto;
 }
 
@@ -32,8 +32,10 @@
 #tessanda-carpet-configurator .carpetconfigurator-button {
   cursor: pointer;
   width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
-  background: #ffffff;
+  background: #fff;
   color: #bb635d;
   display: inline-block;
   font-size: 0.8rem;
@@ -41,7 +43,7 @@
   margin-bottom: 1rem;
   border: 5px solid #bb635d;
   line-height: 1;
-  transition: all 150ms ease-out;
+  transition: all 0.15s ease-out;
 }
 
 @media only screen and (max-width: 700px) {
@@ -52,18 +54,18 @@
 
 #tessanda-carpet-configurator .carpetconfigurator-button[disabled] {
   cursor: default;
-  color: #c0c0c0;
-  border-color: #c0c0c0;
+  color: #9a9a9a;
+  border-color: #9a9a9a;
 }
 
 #tessanda-carpet-configurator .carpetconfigurator-button[disabled]:hover {
-  color: rgb(120, 120, 120);
-  background: #ffffff;
+  color: #787878;
+  background: #fff;
 }
 
 #tessanda-carpet-configurator .carpetconfigurator-button:hover,
 #tessanda-carpet-configurator .carpetconfigurator-button:active {
-  color: #ffffff;
+  color: #fff;
   background: #bb635d;
 }
 
@@ -86,13 +88,68 @@
   flex-wrap: nowrap;
   cursor: pointer;
   position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   background: none;
   border: none;
   opacity: 1;
   margin: 0;
   padding: 0;
-  transition: opacity 150ms ease-out;
+  transition: opacity 0.15s ease-out;
+}
+
+#tessanda-carpet-configurator .row-number {
+  position: absolute;
+  top: 0.15rem;
+  right: 102%;
+  font-size: 0.7rem;
+  text-align: right;
+  color: #969696;
+}
+
+#tessanda-carpet-configurator .row-number-right {
+  right: auto;
+  left: 102%;
+  text-align: left;
+}
+
+#tessanda-carpet-configurator .row:hover::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(187, 99, 93, 0.5);
+}
+
+#tessanda-carpet-configurator .row.is-active::before,
+#tessanda-carpet-configurator .row.is-active:hover::before,
+#tessanda-carpet-configurator .row.is-active::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: -0.15rem;
+  width: 0;
+  height: 0;
+  border-top: 0.5rem solid transparent;
+  border-bottom: 0.5rem solid transparent;
+}
+
+#tessanda-carpet-configurator .row.is-active::before,
+#tessanda-carpet-configurator .row.is-active:hover::before {
+  left: -0.8rem;
+  right: auto;
+  bottom: auto;
+  background: none;
+  border-left: 0.75rem solid #bb635d;
+}
+
+#tessanda-carpet-configurator .row.is-active::after {
+  right: -0.8rem;
+  border-right: 0.75rem solid #bb635d;
 }
 
 #tessanda-carpet-configurator .tile {
@@ -111,70 +168,14 @@
   height: 100%;
 }
 
-#tessanda-carpet-configurator .row-number {
-  position: absolute;
-  top: 0.15rem;
-  right: calc(100% + 2rem);
-  font-size: 0.7rem;
-  text-align: right;
-  color: rgb(150, 150, 150);
-}
-
-#tessanda-carpet-configurator .row-number-right {
-  right: auto;
-  left: calc(100% + 2rem);
-  text-align: left;
-}
-
-#tessanda-carpet-configurator .row:hover::before {
-  content: '';
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(187, 99, 93, 0.5);
-}
-
-#tessanda-carpet-configurator .row.is-active::before,
-#tessanda-carpet-configurator .row.is-active:hover::before {
-  content: '';
-  position: absolute;
-  z-index: 2;
-  top: -0.15rem;
-  left: -0.8rem;
-  right: auto;
-  bottom: auto;
-  width: 0;
-  height: 0;
-  background: none;
-  border-top: 0.5rem solid transparent;
-  border-left: 0.75rem solid #bb635d;
-  border-bottom: 0.5rem solid transparent;
-}
-
-#tessanda-carpet-configurator .row.is-active::after {
-  content: '';
-  position: absolute;
-  z-index: 2;
-  top: -0.15rem;
-  right: -0.8rem;
-  width: 0;
-  height: 0;
-  border-top: 0.5rem solid transparent;
-  border-right: 0.75rem solid #bb635d;
-  border-bottom: 0.5rem solid transparent;
-}
-
 /* ── Color picker ────────────────────────────────── */
 #tessanda-carpet-configurator .color-picker {
-  background: #f5f5f5;
+  background: #f2f2f2;
   margin: 1rem 0;
 }
 
 #tessanda-carpet-configurator .color-picker__title {
-  background: #e8e8e8;
+  background: #e4e4e4;
   padding: 0.5rem 1rem;
   font-size: 0.8rem;
 }
@@ -184,6 +185,8 @@
 }
 
 #tessanda-carpet-configurator .color-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   width: 1.2rem;
   height: 1.2rem;
@@ -198,12 +201,12 @@
 
 /* ── Pattern picker ──────────────────────────────── */
 #tessanda-carpet-configurator .pattern-picker {
-  background: #f5f5f5;
+  background: #f2f2f2;
   margin: 0 0 1rem;
 }
 
 #tessanda-carpet-configurator .pattern-picker__title {
-  background: #e8e8e8;
+  background: #e4e4e4;
   padding: 0.5rem 1rem;
   font-size: 0.8rem;
 }
@@ -220,28 +223,28 @@
   margin: 0.5rem 0;
 }
 
-#tessanda-carpet-configurator .pattern-picker__patterns input[type="radio"] {
+#tessanda-carpet-configurator .pattern-picker__patterns label input {
   display: none;
 }
 
-#tessanda-carpet-configurator .pattern-picker__patterns span {
+#tessanda-carpet-configurator .pattern-picker__patterns label span {
   padding-left: 1.5rem;
 }
 
-#tessanda-carpet-configurator .pattern-picker__patterns span::before {
-  content: '';
+#tessanda-carpet-configurator .pattern-picker__patterns label span::before {
+  content: "";
   position: absolute;
   left: 0;
   top: 50%;
   width: 0.8rem;
   height: 0.8rem;
   border-radius: 2px;
-  background: #ffffff;
+  background: #fff;
   transform: translateY(-50%);
   z-index: 4;
 }
 
-#tessanda-carpet-configurator .pattern-picker__patterns input:checked + span::after {
+#tessanda-carpet-configurator .pattern-picker__patterns label input:checked + span::after {
   content: "✔";
   color: #6a231e;
   position: absolute;
@@ -253,12 +256,12 @@
 
 /* ── Size picker ─────────────────────────────────── */
 #tessanda-carpet-configurator .size-picker {
-  background: #f5f5f5;
+  background: #f2f2f2;
   margin: 0 0 1rem;
 }
 
 #tessanda-carpet-configurator .size-picker__title {
-  background: #e8e8e8;
+  background: #e4e4e4;
   padding: 0.5rem 1rem;
   font-size: 0.8rem;
 }
@@ -293,7 +296,7 @@
 #tessanda-carpet-configurator .send-carpet-form {
   width: 100%;
   flex: 0 0 100%;
-  background: #f5f5f5;
+  background: #f2f2f2;
   margin-top: 2rem;
   font-size: 0.8rem;
 }
@@ -307,7 +310,6 @@
   font-size: 0.7rem;
   line-height: 1;
   margin-bottom: 0.3rem;
-  display: block;
 }
 
 #tessanda-carpet-configurator .send-carpet-form.success {
@@ -315,7 +317,7 @@
 }
 
 #tessanda-carpet-configurator .send-carpet-form.success .send-carpet-form__form {
-  color: #ffffff;
+  color: #fff;
 }
 
 #tessanda-carpet-configurator .send-carpet-form.error {
@@ -323,11 +325,11 @@
 }
 
 #tessanda-carpet-configurator .send-carpet-form.error .send-carpet-form__form {
-  color: #ffffff;
+  color: #fff;
 }
 
 #tessanda-carpet-configurator .send-carpet-form__title {
-  background: #e8e8e8;
+  background: #e4e4e4;
   padding: 0.5rem 1rem;
 }
 
@@ -337,6 +339,7 @@
   padding: 1rem 2rem;
 }
 
+/* Form inputs — not in WP bundle (covered by WP theme globally), needed explicitly in Shopify */
 #tessanda-carpet-configurator .send-carpet-form__form input,
 #tessanda-carpet-configurator .send-carpet-form__form textarea {
   width: 100%;
@@ -355,14 +358,14 @@
 #tessanda-carpet-configurator .send-carpet-mail-submit-button {
   cursor: pointer;
   color: #bb635d;
-  background: #ffffff;
+  background: #fff;
   display: inline-block;
   font-size: 0.8rem;
   padding: 0.6rem 0.8rem;
   margin: 1rem 0 2rem;
   border: 5px solid #bb635d;
   line-height: 1;
-  transition: all 150ms ease-out;
+  transition: all 0.15s ease-out;
 }
 
 @media only screen and (max-width: 700px) {
@@ -373,11 +376,11 @@
 
 #tessanda-carpet-configurator .send-carpet-mail-submit-button:hover,
 #tessanda-carpet-configurator .send-carpet-mail-submit-button:active {
-  color: #ffffff;
+  color: #fff;
   background: #bb635d;
 }
 
-/* ── Responsive ──────────────────────────────────── */
+/* ── Responsive — not in WP bundle (WP theme handles globally), needed for Shopify ── */
 @media only screen and (max-width: 768px) {
   #tessanda-carpet-configurator .carpet-controls {
     width: 100%;
@@ -386,8 +389,8 @@
   }
 
   #tessanda-carpet-configurator .carpet-preview {
-    flex: 0 0 100%;
     max-width: 100%;
+    width: 100%;
     overflow-x: auto;
     order: 1;
   }

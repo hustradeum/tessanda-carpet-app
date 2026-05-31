@@ -55,13 +55,37 @@ export default function App() {
   const onFillAllButtonClick = () => {
     const rows = Math.floor(height / tileHeight);
     const newColors: Record<string, ColorEntry> = {};
-    for (let step = 0; step < rows; step++) {
-      const rowNumber = step + 1;
-      const topId = `${rowNumber}-top`;
-      const bottomId = `${rowNumber}-bottom`;
-      newColors[topId] = { row: topId, color1: activeColor1 ?? "", color2: activeColor2 ?? "" };
-      newColors[bottomId] = { row: bottomId, color1: activeColor1 ?? "", color2: activeColor2 ?? "" };
+
+    if (activeColor1 && !activeColor2) {
+      for (let step = 0; step < rows; step += 1) {
+        const rowNumber = step + 1;
+        const topId = `${rowNumber}-top`;
+        const bottomId = `${rowNumber}-bottom`;
+        newColors[topId] = { row: topId, color1: activeColor1, color2: "" };
+        newColors[bottomId] = { row: bottomId, color1: activeColor1, color2: "" };
+      }
     }
+
+    if (activeColor2 && !activeColor1) {
+      for (let step = 0; step < rows; step += 1) {
+        const rowNumber = step + 1;
+        const topId = `${rowNumber}-top`;
+        const bottomId = `${rowNumber}-bottom`;
+        newColors[topId] = { row: topId, color1: "", color2: activeColor2 };
+        newColors[bottomId] = { row: bottomId, color1: "", color2: activeColor2 };
+      }
+    }
+
+    if (activeColor1 && activeColor2) {
+      for (let step = 0; step < rows; step += 1) {
+        const rowNumber = step + 1;
+        const topId = `${rowNumber}-top`;
+        const bottomId = `${rowNumber}-bottom`;
+        newColors[topId] = { row: topId, color1: activeColor1, color2: activeColor2 };
+        newColors[bottomId] = { row: bottomId, color1: activeColor1, color2: activeColor2 };
+      }
+    }
+
     setColors(newColors);
   };
 
