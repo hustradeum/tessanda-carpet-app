@@ -26,6 +26,7 @@
 #tessanda-carpet-configurator .carpet-preview {
   max-width: 65%;
   overflow-x: auto;
+  padding-left: 2.5rem;
 }
 
 /* ── Buttons ─────────────────────────────────────── */
@@ -392,6 +393,7 @@
     max-width: 100%;
     width: 100%;
     overflow-x: auto;
+    padding-left: 2.5rem;
     order: 1;
   }
 
