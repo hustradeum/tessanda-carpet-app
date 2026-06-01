@@ -24,6 +24,9 @@ export async function generateCarpetPdf(data: CarpetData): Promise<Buffer> {
     const pdfBuffer = await page.pdf({
       format: "A4",
       printBackground: true,
+      displayHeaderFooter: true,
+      headerTemplate: "<span></span>",
+      footerTemplate: "<span></span>",
       margin: { top: "15mm", right: "15mm", bottom: "15mm", left: "15mm" },
     });
     return Buffer.from(pdfBuffer);
