@@ -314,13 +314,27 @@
   margin: 0.5em 0;
 }
 
-#tessanda-carpet-configurator .pattern-picker__patterns label input {
+#tessanda-carpet-configurator .pattern-picker__patterns label input,
+#tessanda-carpet-configurator .pattern-picker__patterns label input[type="radio"],
+#tessanda-carpet-configurator .pattern-picker__patterns label input[type="checkbox"] {
+  all: unset !important;
   display: none !important;
+  visibility: hidden !important;
   position: absolute !important;
   width: 0 !important;
   height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
   opacity: 0 !important;
+  border: none !important;
+  clip: rect(0, 0, 0, 0) !important;
+  overflow: hidden !important;
   pointer-events: none !important;
+}
+
+#tessanda-carpet-configurator .pattern-picker__patterns label input::before,
+#tessanda-carpet-configurator .pattern-picker__patterns label input::after {
+  display: none !important;
 }
 
 #tessanda-carpet-configurator .pattern-picker__patterns label span {
