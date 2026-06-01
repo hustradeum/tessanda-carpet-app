@@ -14,6 +14,18 @@
   box-sizing: border-box;
 }
 
+/* Root: normalize line-height + color so theme values don't cascade in */
+#tessanda-carpet-configurator {
+  font-size: 26px;
+  line-height: 1.4;
+  color: #333333;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Buttons: full reset */
 #tessanda-carpet-configurator button {
   all: unset;
   box-sizing: border-box;
@@ -21,6 +33,7 @@
   display: inline-block;
 }
 
+/* Inputs: reset appearance, theme may add borders/radii/backgrounds */
 #tessanda-carpet-configurator input,
 #tessanda-carpet-configurator textarea {
   -webkit-appearance: none;
@@ -30,8 +43,33 @@
   font-family: inherit;
 }
 
+/* Labels: some themes bold or color labels */
+#tessanda-carpet-configurator label {
+  font-weight: normal;
+  color: inherit;
+}
+
+/* Paragraphs: some themes add margin */
+#tessanda-carpet-configurator p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Images: Dawn sets max-width:100% which would stretch tile SVG images */
+#tessanda-carpet-configurator img {
+  display: inline-block;
+  max-width: none;
+}
+
+/* SVG: prevent theme from hiding or clipping */
 #tessanda-carpet-configurator svg {
   overflow: visible;
+  max-width: none;
+}
+
+/* Links: normalize color inside login hint */
+#tessanda-carpet-configurator a {
+  text-decoration: none;
 }
 
 /* ── Intro text (Liquid, outside React) ──────────── */
@@ -46,14 +84,6 @@
   margin: 0 0 0.75em 0;
 }
 
-/* ── Root: sets 26px base so em = WP rem everywhere ─ */
-#tessanda-carpet-configurator {
-  font-size: 26px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
 
 #tessanda-carpet-configurator .carpet-controls {
   width: 30%;
