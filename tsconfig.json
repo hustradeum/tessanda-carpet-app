@@ -4,6 +4,11 @@
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "isolatedModules": true,
+    // Type-checking only. Without this, `npm run typecheck` (plain `tsc`) emits
+    // .js files next to every .ts/.tsx source; imports like "./App.js" then
+    // resolve to those stale artifacts instead of the real sources, so builds
+    // silently ship outdated code. Vite/Remix do all the actual compiling.
+    "noEmit": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
     "module": "ESNext",

@@ -98,6 +98,7 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ width, height, pattern: activePattern, colors }),
       });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const result = await response.json() as { success: boolean; pdf?: string; filename?: string };
       if (result.success && result.pdf) {
         const bytes = Uint8Array.from(atob(result.pdf), (c) => c.charCodeAt(0));
@@ -106,12 +107,21 @@ export default function App() {
         const a = document.createElement("a");
         a.href = url;
         a.download = result.filename ?? "tessanda-teppich.pdf";
+        // Anchor must be in the DOM for the click to trigger a download in
+        // Firefox/Safari; and the object URL must stay valid until the download
+        // has started — revoking it synchronously aborts the download silently.
+        a.style.display = "none";
+        document.body.appendChild(a);
         a.click();
-        URL.revokeObjectURL(url);
+        setTimeout(() => {
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }, 1000);
       } else {
         alert("PDF konnte nicht erstellt werden. Bitte versuchen Sie es später erneut.");
       }
-    } catch {
+    } catch (err) {
+      console.error("PDF-Download fehlgeschlagen:", err);
       alert("PDF konnte nicht erstellt werden. Bitte versuchen Sie es später erneut.");
     }
   };
@@ -127,9 +137,11 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ firstname, lastname, phone, mail, message, width, height, pattern: activePattern, colors }),
       });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const result = await response.json() as { success: boolean };
       setFormOpen(result.success ? 3 : 4);
-    } catch {
+    } catch (err) {
+      console.error("Offerte konnte nicht gesendet werden:", err);
       setFormOpen(4);
     }
   };

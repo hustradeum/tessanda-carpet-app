@@ -1,19 +1,16 @@
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { testSmtpConnection } from "../lib/email.server.js";
+import { checkEmailConfig } from "../lib/email.server.js";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const baseUrl = `${url.protocol}//${url.host}`;
-  const smtpOk = await Promise.race([
-    testSmtpConnection().catch(() => false),
-    new Promise<boolean>((resolve) => setTimeout(() => resolve(false), 5000)),
-  ]);
-  return json({ baseUrl, smtpOk });
+  const mail = checkEmailConfig();
+  return json({ baseUrl, mail });
 }
 
 export default function Index() {
-  const { baseUrl, smtpOk } = useLoaderData<typeof loader>();
+  const { baseUrl, mail } = useLoaderData<typeof loader>();
 
   return (
     <div style={{ maxWidth: 640, margin: "40px auto", fontFamily: "sans-serif", padding: "0 20px" }}>
@@ -25,12 +22,22 @@ export default function Index() {
         <table style={{ borderCollapse: "collapse", width: "100%" }}>
           <tbody>
             <tr>
-              <td style={{ padding: "8px 16px 8px 0", fontWeight: 600 }}>SMTP Verbindung</td>
+              <td style={{ padding: "8px 16px 8px 0", fontWeight: 600 }}>E-Mail-Versand (Resend)</td>
               <td>
-                <span style={{ color: smtpOk ? "#22c55e" : "#ef4444", fontWeight: 600 }}>
-                  {smtpOk ? "✓ Verbunden" : "✗ Fehler — SMTP-Zugangsdaten prüfen"}
+                <span style={{ color: mail.configured ? "#22c55e" : "#ef4444", fontWeight: 600 }}>
+                  {mail.configured
+                    ? "✓ API-Key gesetzt"
+                    : "✗ RESEND_API_KEY fehlt — Offerten können nicht versendet werden"}
                 </span>
               </td>
+            </tr>
+            <tr>
+              <td style={{ padding: "8px 16px 8px 0", fontWeight: 600 }}>Absender</td>
+              <td style={{ fontFamily: "monospace", fontSize: 13 }}>{mail.from}</td>
+            </tr>
+            <tr>
+              <td style={{ padding: "8px 16px 8px 0", fontWeight: 600 }}>Empfänger intern</td>
+              <td style={{ fontFamily: "monospace", fontSize: 13 }}>{mail.admins.join(", ")}</td>
             </tr>
             <tr>
               <td style={{ padding: "8px 16px 8px 0", fontWeight: 600 }}>App URL</td>
