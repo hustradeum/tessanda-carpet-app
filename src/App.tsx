@@ -218,6 +218,11 @@ export default function App() {
       {formOpen === 1 && (
         <Form
           handleFormSubmit={handleFormSubmit}
+          firstname={firstname}
+          lastname={lastname}
+          mail={mail}
+          phone={phone}
+          message={message}
           setFirstname={setFirstname}
           setLastname={setLastname}
           setMail={setMail}
@@ -240,7 +245,22 @@ export default function App() {
       {formOpen >= 4 && (
         <div className="send-carpet-form error">
           <div className="send-carpet-form__title">Offerte anfordern</div>
-          <div className="send-carpet-form__form">Beim Einsenden der Offerte ist ein Fehler aufgetreten.</div>
+          <div className="send-carpet-form__form">
+            <p>Beim Einsenden der Offerte ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</p>
+            <p>
+              <small>
+                Falls das Problem bestehen bleibt, erreichen Sie uns direkt unter{" "}
+                <a href="mailto:shop@tessanda.ch">shop@tessanda.ch</a>.
+              </small>
+            </p>
+            <button
+              type="button"
+              className="carpetconfigurator-button button--submit"
+              onClick={() => setFormOpen(1)}
+            >
+              Erneut versuchen
+            </button>
+          </div>
         </div>
       )}
     </>
